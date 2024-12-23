@@ -2,12 +2,12 @@ require("dotenv").config()
 const express = require("express");
 const app = express();
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+
 const cookieParser=require("cookie-parser")
 const cors=require("cors")
 const corsOptions=require("./config/corsOptions")
 const {dbConnection,mongoose} = require("./config/dbConn");
-
+const PORT = process.env.PORT || 3000;
 
 dbConnection()
 
