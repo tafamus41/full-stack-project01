@@ -7,7 +7,7 @@ const cookieParser=require("cookie-parser")
 const cors=require("cors")
 const corsOptions=require("./config/corsOptions")
 const {dbConnection,mongoose} = require("./config/dbConn");
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 dbConnection()
 
