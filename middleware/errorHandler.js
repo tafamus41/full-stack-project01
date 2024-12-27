@@ -1,8 +1,14 @@
-module.exports = (err, req, res, next) => {
-    return res.status(err.statusCode || res?.errorStatusCode || 500).send({
-      error: true,
-      message: err.message,
-      cause: err.cause,
-      body: req.body,
-    });
-  };
+const { logEvents } = require('./logger')
+
+const errorHandler = (err, req, res, next) => {
+    logEvents(`${err.name}: ${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`, 'errLog.log')
+    console.log(err.stack)
+
+    const status = res.statusCode ? res.statusCode : 500 // server error 
+
+    res.status(status)
+
+    res.json({ message: err.message, isError: true })
+}
+
+module.exports = errorHandler 
